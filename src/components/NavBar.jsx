@@ -17,7 +17,7 @@ const NavBar = () => {
                 src={"/assets/logo.svg"}
                 width={107}
                 height={80}
-                alt="brand logo"
+                alt="logo"
               />
             </Link>
           </div>
@@ -37,6 +37,15 @@ const NavBar = () => {
             </Link>
             <Link href="/contact" className="text-gray-700 hover:text-blue-600">
               Contact
+            </Link>
+            <Link href="/login" className="text-gray-700 hover:text-blue-600">
+              Login
+            </Link>
+            <Link
+              href="/register"
+              className="text-gray-700 hover:text-blue-600"
+            >
+              Register
             </Link>
           </div>
 
@@ -73,6 +82,12 @@ const NavBar = () => {
           </Link>
           <Link href="/contact" className="block text-gray-700">
             Contact
+          </Link>
+          <Link href="/login" className="text-gray-700 hover:text-blue-600">
+            Login
+          </Link>
+          <Link href="/register" className="text-gray-700 hover:text-blue-600">
+            Register
           </Link>
           <Link href="/appointment">
             <button className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition">
