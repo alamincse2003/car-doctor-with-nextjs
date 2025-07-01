@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
+import LoginForm from "./components/LoginForm";
 
 export default function LoginPage() {
   return (
@@ -27,39 +28,7 @@ export default function LoginPage() {
               Sign in to Your Account
             </h2>
 
-            <form className="space-y-5">
-              <div>
-                <label className="block text-sm text-gray-600 mb-1">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="you@example.com"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-600 mb-1">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="••••••••"
-                />
-              </div>
-              <div className="text-right text-sm">
-                <a href="#" className="text-blue-600 hover:underline">
-                  Forgot password?
-                </a>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-              >
-                Login
-              </button>
-            </form>
+            <LoginForm />
 
             {/* Divider */}
             <div className="flex items-center my-6">
