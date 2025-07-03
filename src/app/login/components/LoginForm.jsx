@@ -2,6 +2,7 @@
 import React from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -10,16 +11,28 @@ const LoginForm = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    toast("Submitting ....");
 
     try {
-      await signIn("credentials", { email, password, callbackUrl: "/" });
-      router.push("/");
+      const response = await signIn("credentials", {
+        email,
+        password,
+        callbackUrl: "/",
+        redirect: false,
+      });
+      if (response.ok) {
+        toast.success("Logged In successfully");
+        router.push("/");
+        form.reset();
+      } else {
+        toast.error("FAILED to Log In");
+      }
     } catch (error) {
       console.log(error);
-      alert("Authentication Failed");
+      toast.error("FAILED to Log In");
     }
 
-    console.log(email, password);
+    // console.log(email, password);
   };
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -44,10 +57,7 @@ const LoginForm = () => {
         />
       </div>
 
-      <button
-        type="submit"
-        className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-      >
+      <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
         Login
       </button>
     </form>

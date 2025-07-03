@@ -4,9 +4,11 @@ import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const { data: session, status } = useSession();
+  console.log(session);
   return (
     <nav className="bg-white  mt-5 fixed top-0 w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,15 +40,31 @@ const NavBar = () => {
             <Link href="/contact" className="text-gray-700 hover:text-blue-600">
               Contact
             </Link>
-            <Link
-              href="/register"
-              className="text-gray-700 hover:text-blue-600"
-            >
-              Register
-            </Link>
-            <Link href="/login" className="text-gray-700 hover:text-blue-600">
-              Login
-            </Link>
+            {status == "authenticated" ? (
+              <>
+                <li
+                  onClick={() => signOut()}
+                  className="text-gray-700 cursor-pointer hover:text-blue-600 list-none"
+                >
+                  Log Out
+                </li>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/register"
+                  className="text-gray-700 hover:text-blue-600"
+                >
+                  Register
+                </Link>
+                <Link
+                  href="/login"
+                  className="text-gray-700 hover:text-blue-600"
+                >
+                  Login
+                </Link>
+              </>
+            )}
           </div>
 
           <div className="hidden md:block font-semibold">
