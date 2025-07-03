@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 import RegisterForm from "./components/RegisterForm";
+import SocialLogin from "../login/components/SocialLogin";
 
 export default function RegisterPage() {
   return (
@@ -40,11 +40,7 @@ export default function RegisterPage() {
             </div>
 
             {/* Social Login */}
-            <div className="flex justify-center space-x-6 text-2xl text-gray-600">
-              <FaGoogle className="hover:text-red-600 cursor-pointer" />
-              <FaFacebook className="hover:text-blue-700 cursor-pointer" />
-              <FaGithub className="hover:text-black cursor-pointer" />
-            </div>
+            <SocialLogin />
 
             {/* Signup link */}
             <p className="mt-8 text-center text-sm text-gray-500">

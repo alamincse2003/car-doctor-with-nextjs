@@ -42,6 +42,7 @@ const NavBar = () => {
             </Link>
             {status == "authenticated" ? (
               <>
+                {/* <li>Name:{session?.user?.name}</li> */}
                 <li
                   onClick={() => signOut()}
                   className="text-gray-700 cursor-pointer hover:text-blue-600 list-none"
@@ -101,12 +102,29 @@ const NavBar = () => {
           <Link href="/contact" className="block text-gray-700">
             Contact
           </Link>
-          <Link href="/register" className="text-gray-700 hover:text-blue-600">
-            Register
-          </Link>
-          <Link href="/login" className="text-gray-700 hover:text-blue-600">
-            Login
-          </Link>
+          {status == "authenticated" ? (
+            <>
+              {/* <li>Name:{session?.user?.name}</li> */}
+              <li
+                onClick={() => signOut()}
+                className="text-gray-700 cursor-pointer hover:text-blue-600 list-none"
+              >
+                Log Out
+              </li>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/register"
+                className="text-gray-700 hover:text-blue-600"
+              >
+                Register
+              </Link>
+              <Link href="/login" className="text-gray-700 hover:text-blue-600">
+                Login
+              </Link>
+            </>
+          )}
 
           <Link href="/appointment">
             <button className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition">
