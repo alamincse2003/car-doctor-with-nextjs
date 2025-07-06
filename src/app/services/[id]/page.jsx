@@ -1,12 +1,12 @@
-import dbConnect, { collectionNamesObj } from "@/lib/dbConnect";
-import { ObjectId } from "mongodb";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default async function ServicesDetailsPage({ params }) {
   const p = await params;
-  const servicesCollection = dbConnect(collectionNamesObj.servicesCollection);
-  const data = await servicesCollection.findOne({ _id: new ObjectId(p.id) });
+  const res = await fetch(`http://localhost:3000/api/service/${p.id}`);
+  const data = await res.json();
+
   return (
     <div className="py-10 mt-20">
       <div className="relative w-full h-64 md:h-96">
@@ -45,9 +45,11 @@ export default async function ServicesDetailsPage({ params }) {
             <h3 className="text-3xl font-semibold text-blue-600">
               {data.price || "$0.00"}
             </h3>
-            <button className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition">
-              Proceed to Checkout
-            </button>
+            <Link href={`/checkout/${data._id}`}>
+              <button className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition">
+                Proceed to Checkout
+              </button>
+            </Link>
           </div>
         </div>
       </section>
